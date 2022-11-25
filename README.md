@@ -19,3 +19,9 @@ pytorch model and some paper notes
 - 回顾DIEN：利用 AUGRU(GRU with Attention Update Gate) 组成的序列模型，**在兴趣抽取层GRU基础上加入注意力机制，模拟与当前目标广告（Target Ad）相关的兴趣进化过程**，兴趣进化层的最后一个状态的输出就是用户当前的兴趣向量 h'(T)。 
 
 
+## 2.3 MIND
+- Hinton在2011年提出的capsule network，通过EM期望值最大化算法，用动态路由代替反向传播，学习不同capsule之间的连接权重，实现比CNN更优秀的空间关系建模效果（CNN可能对同一个图像的旋转版本识别错误）。
+- 阿里的序列召回MIND模型：引入了胶囊网络，==将胶囊网络的动态路由算法引入到了用户的多兴趣建模上==，通过B2I动态路由很好的从用户的原始行为序列中提取出用户的多种兴趣表征，其实就是将用户行为聚类成多个类表示用户兴趣。
+- 在离线训练阶段，通过提出Label-Aware Attention详细的探讨了多兴趣建模下的模型参数更新范式。
+- 序列召回推荐本质是一个多分类问题，将用户历史`item_emb`进行pooling后的`user_emb`，和`item_emb`进行内积得到`score`偏好分数。交叉熵损失函数的参数即`socre`和标签`item_id`（该用户交互的`item_id`），典型的多分类问题。
+
