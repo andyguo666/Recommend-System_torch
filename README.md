@@ -25,3 +25,7 @@ pytorch model and some paper notes
 - 在离线训练阶段，通过提出Label-Aware Attention详细的探讨了多兴趣建模下的模型参数更新范式。
 - 序列召回推荐本质是一个多分类问题，将用户历史`item_emb`进行pooling后的`user_emb`，和`item_emb`进行内积得到`score`偏好分数。交叉熵损失函数的参数即`socre`和标签`item_id`（该用户交互的`item_id`），典型的多分类问题。
 
+## 2.4 Comirec-DR
+- 多兴趣召回建模。Comirec论文中的提出的第一个模型：Comirec-DR（DR就是dynamic routing），阿里将用户行为序列的item embeddings作为初始的capsule，然后提取出多个兴趣capsules，即为用户的多个兴趣。其中胶囊网络中的动态路由算法和MIND类似，不同在于：
+   - 输入序列胶囊$i$与所产生的兴趣胶囊 $j$ 的权重 $b_{i j}$初始化为0；
+   - 在Comirec-DR中对于不同的序列胶囊i与兴趣胶囊j，我们都有==一个独立的$W_{i j} \in \mathbb{R}^{d \times d}$来完成序列胶囊`i`到兴趣胶囊`j`之间的映射==。
