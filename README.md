@@ -1,4 +1,4 @@
-# pytorch_project
+# 序列召回推荐算法
 
 # 1. project description
 pytorch model and some paper notes
