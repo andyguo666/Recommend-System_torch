@@ -29,3 +29,9 @@ pytorch model and some paper notes
 - 多兴趣召回建模。Comirec论文中的提出的第一个模型：Comirec-DR（DR就是dynamic routing），阿里将用户行为序列的item embeddings作为初始的capsule，然后提取出多个兴趣capsules，即为用户的多个兴趣。其中胶囊网络中的动态路由算法和MIND类似，不同在于：
    - 输入序列胶囊$i$与所产生的兴趣胶囊 $j$ 的权重 $b_{i j}$初始化为0；
    - 在Comirec-DR中对于不同的序列胶囊i与兴趣胶囊j，我们都有==一个独立的$W_{i j} \in \mathbb{R}^{d \times d}$来完成序列胶囊`i`到兴趣胶囊`j`之间的映射==。
+   
+   
+## 2.5 Comirec-SA
+- Comirec-SA基于attention的多兴趣建模，论文中先通过attention提取单一兴趣，再推广到多兴趣建模。另外使用贪心算法优化带有准确度+多样性的目标函数。
+- DR把MIND的attention换成argmax（还有初始化方式不同、序列胶囊到兴趣胶囊用可学习权重矩阵替代的不同），SR则本质是多头注意力进行多兴趣建模。
+- `torch.einsum`（Einstein summation convention，即爱因斯坦求和约定）可以写tensor运算和更高维度tensor写法更加简洁，如用`torch.einsum("bij, bjk -> bik", batch_tensor_1, batch_tensor_2)`进行batch内矩阵乘法运算。
