@@ -5,7 +5,7 @@ pytorch model and some paper notes
 
 # 2. contents
 ## 2.1 Xchest picture recognization
-肺部感染图像识别，模型微调。
+小练习肺部感染图像识别，模型微调。
 
 
 ## 2.2 GRU4Rec model
